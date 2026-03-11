@@ -11,7 +11,7 @@ def visualize(fasta_file, maxlen=-1):
   mapping = {"A":0,"C":1,"G":2,"T":3,"-":4}
   data = np.array([[mapping.get(base,5) for base in seq] for seq in seqs])
 
-  if maxlen >= 1 and len(data[0]) > maxlen:
+  if maxlen >= 1 and data.shape[1] > maxlen:
     data = data[:, :maxlen]
 
   # MEGA風カラー
@@ -29,8 +29,8 @@ def visualize(fasta_file, maxlen=-1):
   plt.figure(figsize=(10,1))
   plt.imshow(data, cmap=cmap, norm=norm, aspect="auto")
 
-  for i in range(len(seqs)):
-    for j in range(data.shape[i]):
+  for i in range(data.shape[0]):
+    for j in range(data.shape[1]):
       plt.text(j, i, seqs[i][j], ha="center", va="center", fontsize=6)
 
   plt.yticks(range(len(names)), names)
