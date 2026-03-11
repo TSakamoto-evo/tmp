@@ -3,13 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap, BoundaryNorm
 
-def visualize(fasta_file):
+def visualize(fasta_file, maxlen=-1):
   seqs = [str(record.seq) for record in SeqIO.parse(fasta_file, "fasta")]
   names = [record.id for record in SeqIO.parse(fasta_file, "fasta")]
 
   # 塩基を数値に変換
   mapping = {"A":0,"C":1,"G":2,"T":3,"-":4}
   data = np.array([[mapping.get(base,5) for base in seq] for seq in seqs])
+
+  if maxlen >= 1 and len(data[0]) > maxlen:
+    data = data[:, :maxlen]
 
   # MEGA風カラー
   cmap = ListedColormap([
