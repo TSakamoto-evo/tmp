@@ -30,7 +30,7 @@ def visualize(fasta_file, maxlen=-1):
   plt.imshow(data, cmap=cmap, norm=norm, aspect="auto")
 
   for i in range(len(seqs)):
-    for j in range(len(seqs[i])):
+    for j in range(data.shape[i]):
       plt.text(j, i, seqs[i][j], ha="center", va="center", fontsize=6)
 
   plt.yticks(range(len(names)), names)
