@@ -23,7 +23,7 @@ def visualize(fasta_file):
 
   norm = BoundaryNorm([-0.5,0.5,1.5,2.5,3.5,4.5,5.5], cmap.N)
 
-  plt.figure(figsize=(12,2.5))
+  plt.figure(figsize=(10,1))
   plt.imshow(data, cmap=cmap, norm=norm, aspect="auto")
 
   for i in range(len(seqs)):
